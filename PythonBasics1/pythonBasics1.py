@@ -37,6 +37,10 @@ def starts_with_vowel(s):
 # For an empty array it should return zero
 # For an array with just one element, it should return that element
 def max_min_sum(arr):
-  # YOUR CODE HERE
-  
-  return
+    if len(arr) == 0:
+        return 0
+    elif len(arr) == 1:
+        return arr[0]
+    else:
+        for i in arr:
+            return max(arr) + min(arr)
