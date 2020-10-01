@@ -8,9 +8,14 @@
 # Define a function starts_with(s, char) that takes a string and a character
 # and returns true if the string starts with that character and false otherwise. 
 def starts_with(s, char):
-  # YOUR CODE HERE
-  
-  return
+    for i in s:
+        if s[0] == char:
+            return True
+        else:
+            return False
+    if s == '' and char == '':
+        return True
+    return False
 
 # Part B. starts_with_vowel
 # Define a function starts_with_vowel(s) that takes a string and
