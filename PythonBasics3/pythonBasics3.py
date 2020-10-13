@@ -14,8 +14,11 @@ import re
 # Note: Be sure to use RegEx!
 def starts_with_number(s):
   # YOUR CODE HERE
-
-  return
+  if re.match("\d", s):
+      return True
+  else:
+      return False
+  return True
 
 # # Part B. starts_with_consonant
 # Define a function starts_with_consonant(s) that takes a string and returns true
@@ -24,8 +27,11 @@ def starts_with_number(s):
 # Note: Be sure to use RegEx and it works for both upper and lower case and for nonletters!
 def starts_with_consonant(s):
   # YOUR CODE HERE
-
-  return
+  if re.match("[^AEIOUaeiou#]", s):
+      return True
+  else:
+      return False
+  return True
 
 
 # Part C. binary_multiple_of_4
@@ -35,5 +41,7 @@ def starts_with_consonant(s):
 # Hint: Use regular expressions to match for the pattern of a binary number that is a multiple of 4.
 def binary_multiple_of_4(s):
   # YOUR CODE HERE
-
-  return
+  if re.match("[10]*[100]$", s):
+      return True
+  else:
+      return False
