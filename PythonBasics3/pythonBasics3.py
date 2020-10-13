@@ -41,7 +41,15 @@ def starts_with_consonant(s):
 # Hint: Use regular expressions to match for the pattern of a binary number that is a multiple of 4.
 def binary_multiple_of_4(s):
   # YOUR CODE HERE
-  if re.match("[10]*[100]$", s):
+  x = re.search("[a-zA-Z]", s)
+  y = re.search("100$", s)
+  if s == '':
+      return False
+  elif s == '0':
+      return True
+  elif x:
+      return False
+  elif y:
       return True
   else:
       return False
