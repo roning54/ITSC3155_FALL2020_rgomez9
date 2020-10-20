@@ -7,9 +7,15 @@
 # # Part A.
 def array_2_dict(emails, contacts):
     # YOUR CODE HERE
-
-    return
-
+    contact_d = contacts
+    res = {}
+    if emails == " ":
+        return contact_d
+    else: 
+        res = dict(zip(contact_d, emails))
+           
+    return res
+        
 # # Part B.
 def array2d_2_dict(contact_info, contacts):
     # YOUR CODE HERE
