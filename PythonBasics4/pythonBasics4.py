@@ -7,14 +7,12 @@
 # # Part A.
 def array_2_dict(emails, contacts):
     # YOUR CODE HERE
-    res = {}
-    if emails == " ":
-        res = contacts
+    if emails:
+        names = sorted(list(contacts))
+        emails = sorted(emails)
+        res = dict(zip(names, emails))
         return res
-    else: 
-        res = dict(zip(contacts, emails))
-           
-    return res
+    return contacts
         
 # # Part B.
 def array2d_2_dict(contact_info, contacts):
