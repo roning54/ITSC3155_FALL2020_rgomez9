@@ -30,9 +30,14 @@ def array2d_2_dict(contact_info, contacts):
         contacts = d
     return contacts
 
+import numpy as np
 # # Part C.
 def dict_2_array(contacts):
     # YOUR CODE HERE
-
-    return
+    dict = contacts
+    result = dict.items() 
+    data = list(result) 
+    numpyArray = np.array(data) 
+     
+    return numpyArray
 
