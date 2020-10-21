@@ -7,20 +7,28 @@
 # # Part A.
 def array_2_dict(emails, contacts):
     # YOUR CODE HERE
-    contact_d = contacts
     res = {}
     if emails == " ":
-        return contact_d
+        res = contacts
+        return res
     else: 
-        res = dict(zip(contact_d, emails))
+        res = dict(zip(contacts, emails))
            
     return res
         
 # # Part B.
 def array2d_2_dict(contact_info, contacts):
     # YOUR CODE HERE
-
-    return
+    if contact_info:
+        d = {}
+        i = 0
+        contact = contact_info
+        for keys in contacts:
+            contact = contact_info[i]
+            d[keys] = dict(email = contact[0], phone = contact[1])
+            i += 1
+        contacts = d
+    return contacts
 
 # # Part C.
 def dict_2_array(contacts):
