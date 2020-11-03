@@ -12,6 +12,12 @@
         <h1>Note detials</h1>
 
         <table>
+            {% for key, value in notes.items() %}
+            <tr>
+                <td><a href= "notes/{{key}}"">{{ value.title }}</a></td>
+                <td>{{ value.date }}</td>
+            </tr>
+            {% endfor %}
             <tr>
                 <th>Title</th>
                 <th>Text</th>
