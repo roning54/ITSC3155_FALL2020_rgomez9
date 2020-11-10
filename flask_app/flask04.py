@@ -42,7 +42,7 @@ notes = {1 : {'title' : 'First note', 'text': 'This is my first note', 'date': '
 @app.route('/')
 @app.route('/index')
 def index():
-    a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
+    a_user = db.session.query(User).filter_by(email='mogli@uncc.edu').one()
     return render_template('index.html', user = a_user)
 
 @app.route('/users/<username>')
@@ -52,7 +52,7 @@ def get_user(username):
 @app.route('/notes')
 def get_notes():
     #retrieve user from database
-    a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
+    a_user = db.session.query(User).filter_by(email='mogli@uncc.edu').one()
     #retrieve notes from database
     my_notes = db.session.query(Note).all()
     
@@ -60,7 +60,7 @@ def get_notes():
 
 @app.route('/notes/<note_id>')
 def get_note(note_id):
-    a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
+    a_user = db.session.query(User).filter_by(email='mogli@uncc.edu').one()
     my_note = db.session.query(Note).filter_by(id=note_id)
     
     
@@ -88,7 +88,7 @@ def new_note():
         return redirect(url_for('get_notes'))
     
     else:
-        a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
+        a_user = db.session.query(User).filter_by(email='mogli@uncc.edu').one()
         return render_template('new.html', user = a_user)
 
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
