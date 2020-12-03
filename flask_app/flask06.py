@@ -21,6 +21,7 @@ from models import User as User
 from forms import RegisterForm
 from forms import LoginForm
 
+
 app = Flask(__name__)     # create an app
 
 app.config['SECRET_KEY'] = 'SE3155'
@@ -158,6 +159,15 @@ def login():
     
     else:
         return render_template("login.html", form=login_form)
+
+@app.route('/logout')
+def logout():
+    # check if a user is saved in session
+    if session.get('user'):
+        session.clear()
+
+    return redirect(url_for('index'))
+
 
 @app.route('/register', methods= ['POST', 'GET'])
 def register():
