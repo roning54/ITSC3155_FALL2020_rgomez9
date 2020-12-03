@@ -7,6 +7,7 @@ Created on Tue Nov 10 13:37:22 2020
 """
 
 from database import db
+import datetime
 
 class Note(db.Model):
     id = db.Column("id", db.Integer, primary_key = True)
@@ -15,7 +16,10 @@ class Note(db.Model):
     date = db.Column("date", db.String(50))
     #can create a foreign key; referencing the id variable in the User class, so that is why it is lowercase u
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    
+    #prevents a foreign key constraint violation error
+    #allow users to delete a note we need this to handle what happens to the comments
+    comments = db.relationship("Comment", backref = "note", cascade= "all, delete-orphan", lazy=True)
+
     def __init__(self, title, text, date, user_id):
         self.title = title
         self.text = text
@@ -32,8 +36,8 @@ class User(db.Model):
     #backref: a simple way to also declare a new property on the User class
     #lazy: defines when SQLAlchemy will load the data from the database
     # -- When set to True it means that SQLAlchemy will load the data as necessay in one go
-    note = db.relationship("Note", backref = 'user', lazy=True)
-
+    notes = db.relationship("Note", backref = 'user', lazy=True)
+    comments = db.relationship("Comment", backref = 'user', lazy=True)
     
     def __init__(self, name, email, password):
         self.first_name = first_name
@@ -41,3 +45,16 @@ class User(db.Model):
         self.email = email
         self.password = password
         self.registered_on = datetime.date.today()
+
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_posted = db.Column(db.DateTime, nullable=False)
+    content = db.Column(db.VARCHAR, nullable=False)
+    note_id = db.Column(db.Integer, db.ForeignKey("note.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+
+    def __init__(self, content, note_id, user_id):
+        self.date_posted = datetime.date.today()
+        self.content = content
+        self.note_id = note_id
+        self.user_id = user_id
