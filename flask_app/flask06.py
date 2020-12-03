@@ -69,7 +69,7 @@ def get_notes():
 @app.route('/notes/<note_id>')
 def get_note(note_id):
     if session.get('user'):
-        my_note = db.session.query(Note).filter_by(id=node.id, user_id=session['user_id']).one()
+        my_note = db.session.query(Note).filter_by(id=note_id, user_id=session['user_id']).one()
 
         #create a comment form object
         form = CommentForm()
@@ -139,7 +139,7 @@ def update_note(note_id):
 @app.route('/notes/delete/<note_id>', methods=['POST'])
 def delete_note(note_id):
     if session.get('user'):
-        my_note = db.session.query(Note).filter_by(id=node_id).one()
+        my_note = db.session.query(Note).filter_by(id=note_id).one()
         db.session.delete(my_note)
         db.session.commit()
 
@@ -156,7 +156,7 @@ def login():
 
         if bcrypt.checkpw(request.form['password'].encode('utf-8'), the_user.password):
             session['user'] = the_user.first_name
-            sessio['user_id'] = the_user.id
+            session['user_id'] = the_user.id
 
             return redirect(url_for('get_notes'))
         
